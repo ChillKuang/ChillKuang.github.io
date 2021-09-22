@@ -1,97 +1,68 @@
-<!DOCTYPE html> 
-<html> 
-<body> 
-
-<section class="navigation">
-  <ul>
-    <li>
-      <a class="active" href="main.html">正行</a>
-    </li>
-    <li>
-      <a href="preparatory.html">前行</a>
-    </li>
-    <li>
-      <a href="dedication.html">結行</a>
-    </li>
-  </ul>
-</section> 
-
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>35 Buddhas</title>
+</head>
+<body>
 <form action="/action_page.php">
   
   <label for="fname">Count:</label>
   <input type="text" id="timeCount" name="timeCount"><br><br>
-  <button onclick="countFunction()">Submit count</button>
+  <button onclick="addCount()">Submit Count</button>
+</form>
 
-<div style="text-align:center"> 
-  <button onclick="playPause()">Play/Pause</button> 
-  <button onclick="makeBig()">Big</button>
-  <button onclick="makeSmall()">Small</button>
-  <button onclick="makeNormal()">Normal</button>
-  <button onclick="makeFast()">Speed 1.5</button>
+<div style="padding:56.25% 0 0 0;position:relative;">
 
-<div style="text-align:center"> 
-  <p id="bowCount"></p>
-  <p id="currentTime"></p>
-  <p id="totalTime"></p>
+<iframe id="video1" src="https://player.vimeo.com/video/611371552?h=51b608e7d1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="三十五佛懺正行">
+</iframe>
 
-<video id="video1" width="1200" controls>
-  <source src="三十五佛懺正行.mp4" type="video/mp4">
-  <source src="mov_bbb.ogg" type="video/ogg">
-</video>
+</div>
 
+<script src="https://player.vimeo.com/api/player.js"></script>
 
+<script>
+//Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
 
-<script> 
+var iframe = document.querySelector('iframe');
+var player = new Vimeo.Player(iframe);
+var countPlay  = 0;
+var reaptedTimes = 1;
 
-var myVideo = document.getElementById("video1"); 
-var count  =  0;
-var countEnd = 1;
-document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
-document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
-document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
-
-function playPause() { 
-  if (myVideo.paused) 
-    myVideo.play(); 
-  else 
-    myVideo.pause(); 
-} 
-
-function makeBig() { 
-    myVideo.width = 1200; 
-} 
-
-function makeSmall() { 
-    myVideo.width = 1000; 
-} 
-
-function makeNormal() { 
-    myVideo.width = 800; 
-} 
-
-function makeFast() { 
-    myVideo.playbackRate = 1.5; 
-} 
-
-function countFunction() {
-   countEnd = document.getElementById('timeCount').value; 
-   document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+function addCount(){
+  reaptedTimes = document.getElementById('timeCount').value;
 }
 
-myVideo.onended = function() {
-  count = count + 1;
-  document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
-  document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
-  document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
-  if(count!=countEnd)
-  {
-    myVideo.play();
+player.on('cuepoint', function(data) {
+    countPlay += 1;
+    if (countPlay == reaptedTimes){
+      player.setLoop(false);
+    }
+        console.log("start:" + data.time);
+        console.log("times:" + countPlay);
+    });
+
+player.addCuePoint(0, {
+  customKey: 'customValue'
+}).then(function(id) {
+  // The cue point is added
+}).catch(function(error) {
+  switch (error.name) {
+      case 'UnsupportedError':
+          // Cue points aren't supported by the current player or browser
+          break;
+
+      case 'RangeError':
+          // The time is less than 0 or greater than the video's duration
+          break;
+
+      default:
+          // Some other error occurred
+          break;
   }
-};
+});
 
-</script> 
+</script>
 
-
-
-</body> 
+</body>
 </html>
