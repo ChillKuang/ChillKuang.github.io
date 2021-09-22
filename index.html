@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<section class="navigation">
+  <ul>
+    <li>
+      <a class="active" href="main.html">正行</a>
+    </li>
+    <li>
+      <a href="preparatory.html">前行</a>
+    </li>
+    <li>
+      <a href="dedication.html">結行</a>
+    </li>
+  </ul>
+</section> 
+
+<form action="/action_page.php">
+  
+  <label for="fname">Count:</label>
+  <input type="text" id="timeCount" name="timeCount"><br><br>
+  <button onclick="countFunction()">Submit count</button>
+
+<div style="text-align:center"> 
+  <button onclick="playPause()">Play/Pause</button> 
+  <button onclick="makeBig()">Big</button>
+  <button onclick="makeSmall()">Small</button>
+  <button onclick="makeNormal()">Normal</button>
+  <button onclick="makeFast()">Speed 1.5</button>
+
+<div style="text-align:center"> 
+  <p id="bowCount"></p>
+  <p id="currentTime"></p>
+  <p id="totalTime"></p>
+
+<video id="video1" width="1200" controls>
+  <source src="三十五佛懺正行.mp4" type="video/mp4">
+  <source src="mov_bbb.ogg" type="video/ogg">
+</video>
+
+
+
+<script> 
+
+var myVideo = document.getElementById("video1"); 
+var count  =  0;
+var countEnd = 1;
+document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
+document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
+document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+
+function playPause() { 
+  if (myVideo.paused) 
+    myVideo.play(); 
+  else 
+    myVideo.pause(); 
+} 
+
+function makeBig() { 
+    myVideo.width = 1200; 
+} 
+
+function makeSmall() { 
+    myVideo.width = 1000; 
+} 
+
+function makeNormal() { 
+    myVideo.width = 800; 
+} 
+
+function makeFast() { 
+    myVideo.playbackRate = 1.5; 
+} 
+
+function countFunction() {
+   countEnd = document.getElementById('timeCount').value; 
+   document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+}
+
+myVideo.onended = function() {
+  count = count + 1;
+  document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
+  document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
+  document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+  if(count!=countEnd)
+  {
+    myVideo.play();
+  }
+};
+
+</script> 
+
+
+
+</body> 
+</html>
