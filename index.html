@@ -5,12 +5,11 @@
   <title>35 Buddhas</title>
 </head>
 <body>
-<form action="/action_page.php">
   
-  <label for="fname">Count:</label>
-  <input type="text" id="timeCount" name="timeCount"><br><br>
-  <button onclick="addCount()">Submit Count</button>
-</form>
+ <label for="fname">Count:</label>
+ <input type="text" id="timeCount" name="timeCount"><br><br>
+ <button onclick="addCount()">Submit Count</button>
+
 
 <div style="padding:56.25% 0 0 0;position:relative;">
 
@@ -31,12 +30,16 @@ var reaptedTimes = 1;
 
 function addCount(){
   reaptedTimes = document.getElementById('timeCount').value;
+  console.log("reaptedTimes:" + reaptedTimes);
 }
 
 player.on('cuepoint', function(data) {
     countPlay += 1;
     if (countPlay == reaptedTimes){
       player.setLoop(false);
+    }
+    else{
+      player.setLoop(true);
     }
         console.log("start:" + data.time);
         console.log("times:" + countPlay);
