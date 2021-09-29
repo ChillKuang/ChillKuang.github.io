@@ -1,14 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>35 Buddhas</title>
+  <meta charset="UTF-8" />
+
+  <title>正行</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  
+  <!-- Google Fonts Roboto -->
+  <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+  />
+  <!-- MDB -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
 </head>
 <body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: brown;">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">三十五佛懺</a>
+      
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="preparatory.html">前行</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">正行</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dedication.html">結行</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+
+
+      <!-- Notifications -->
+
+
+      <!-- Avatar -->
+
+    <!-- Right elements -->
+    </div>
+  <!-- Container wrapper -->
+</nav><br><br>
+<!-- Navbar -->
   
- <label for="fname">Count:</label>
+ <label for="fname">輪數:</label>
  <input type="text" id="timeCount" name="timeCount"><br><br>
- <button onclick="addCount()">Submit Count</button><br><br>
+ <button onclick="addCount()">提交</button><br><br>
 
 
 <div style="padding:56.25% 0 0 0;position:relative;">
@@ -66,6 +131,8 @@ player.addCuePoint(0, {
 });
 
 </script>
+
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
 </body>
 </html>
