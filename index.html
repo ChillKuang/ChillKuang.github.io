@@ -1,97 +1,138 @@
-<!DOCTYPE html> 
-<html> 
-<body> 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
 
-<section class="navigation">
-  <ul>
-    <li>
-      <a class="active" href="main.html">正行</a>
-    </li>
-    <li>
-      <a href="preparatory.html">前行</a>
-    </li>
-    <li>
-      <a href="dedication.html">結行</a>
-    </li>
-  </ul>
-</section> 
-
-<form action="/action_page.php">
+  <title>正行</title>
   
-  <label for="fname">Count:</label>
-  <input type="text" id="timeCount" name="timeCount"><br><br>
-  <button onclick="countFunction()">Submit count</button>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  
+  <!-- Google Fonts Roboto -->
+  <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+  />
+  <!-- MDB -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
+</head>
+<body>
 
-<div style="text-align:center"> 
-  <button onclick="playPause()">Play/Pause</button> 
-  <button onclick="makeBig()">Big</button>
-  <button onclick="makeSmall()">Small</button>
-  <button onclick="makeNormal()">Normal</button>
-  <button onclick="makeFast()">Speed 1.5</button>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: brown;">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
 
-<div style="text-align:center"> 
-  <p id="bowCount"></p>
-  <p id="currentTime"></p>
-  <p id="totalTime"></p>
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">三十五佛懺</a>
+      
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="preparatory.html">前行</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">正行</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dedication.html">結行</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
 
-<video id="video1" width="1200" controls>
-  <source src="三十五佛懺正行.mp4" type="video/mp4">
-  <source src="mov_bbb.ogg" type="video/ogg">
-</video>
+    <!-- Right elements -->
 
 
+      <!-- Notifications -->
 
-<script> 
 
-var myVideo = document.getElementById("video1"); 
-var count  =  0;
-var countEnd = 1;
-document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
-document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
-document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+      <!-- Avatar -->
 
-function playPause() { 
-  if (myVideo.paused) 
-    myVideo.play(); 
-  else 
-    myVideo.pause(); 
-} 
+    <!-- Right elements -->
+    </div>
+  <!-- Container wrapper -->
+</nav><br><br>
+<!-- Navbar -->
+  
+ <label for="fname">輪數:</label>
+ <input type="text" id="timeCount" name="timeCount"><br><br>
+ <button onclick="addCount()">提交</button><br><br>
 
-function makeBig() { 
-    myVideo.width = 1200; 
-} 
 
-function makeSmall() { 
-    myVideo.width = 1000; 
-} 
+<div style="padding:56.25% 0 0 0;position:relative;">
 
-function makeNormal() { 
-    myVideo.width = 800; 
-} 
+<iframe id="video1" src="https://player.vimeo.com/video/611371552?h=51b608e7d1&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="三十五佛懺正行">
+</iframe>
 
-function makeFast() { 
-    myVideo.playbackRate = 1.5; 
-} 
+</div>
 
-function countFunction() {
-   countEnd = document.getElementById('timeCount').value; 
-   document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script>
+//Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
+
+var iframe = document.querySelector('iframe');
+var player = new Vimeo.Player(iframe);
+var countPlay  = 0;
+var reaptedTimes = 1;
+
+function addCount(){
+  reaptedTimes = document.getElementById('timeCount').value;
+  console.log("reaptedTimes:" + reaptedTimes);
 }
 
-myVideo.onended = function() {
-  count = count + 1;
-  document.getElementById("bowCount").innerHTML = "拜數：" + count*35 + "拜";
-  document.getElementById("currentTime").innerHTML = "已經完成：" + count + "輪";
-  document.getElementById("totalTime").innerHTML = "總輪數："+ countEnd + "輪";
-  if(count!=countEnd)
-  {
-    myVideo.play();
+player.on('cuepoint', function(data) {
+    countPlay += 1;
+    if (countPlay == reaptedTimes){
+      player.setLoop(false);
+    }
+    else{
+      player.setLoop(true);
+    }
+        console.log("start:" + data.time);
+        console.log("times:" + countPlay);
+    });
+
+player.addCuePoint(0, {
+  customKey: 'customValue'
+}).then(function(id) {
+  // The cue point is added
+}).catch(function(error) {
+  switch (error.name) {
+      case 'UnsupportedError':
+          // Cue points aren't supported by the current player or browser
+          break;
+
+      case 'RangeError':
+          // The time is less than 0 or greater than the video's duration
+          break;
+
+      default:
+          // Some other error occurred
+          break;
   }
-};
+});
 
-</script> 
+</script>
 
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
-
-</body> 
+</body>
 </html>
