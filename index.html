@@ -94,7 +94,6 @@ var countPlay  = 0;
 var reaptedTimes = 1;
 var button = document.getElementById("count");
 
-//button.addEventListener("touchend", addCount);
 
 function addCount(){
   reaptedTimes = document.getElementById('timeCount').value;
@@ -103,6 +102,7 @@ function addCount(){
 }
 
 player.on('cuepoint', function(data) {
+    button.textContent = `總共要播${reaptedTimes}次`;
     countPlay += 1;
     if (countPlay == reaptedTimes){
       player.setLoop(false);
