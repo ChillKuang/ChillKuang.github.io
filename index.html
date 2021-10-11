@@ -94,7 +94,6 @@ var countPlay  = 0;
 var reaptedTimes = 1;
 
 button.addEventListener('touchstart', event => {
-  button.textContent = `Click count: ${event.detail}`;
   reaptedTimes = document.getElementById('timeCount').value;
   button.textContent = `手機按鈕：已提交`;
   console.log("reaptedTimes:" + reaptedTimes);
