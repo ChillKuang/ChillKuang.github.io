@@ -73,7 +73,7 @@
   
  <label for="fname">輪數:</label>
  <input type="text" id="timeCount" name="timeCount"><br><br>
- <button class="count" onclick="addCount()">提交</button><br><br>
+ <button id="count" onclick="addCount()">提交</button><br><br>
 
 
 <div style="padding:56.25% 0 0 0;position:relative;">
@@ -87,21 +87,18 @@
 
 <script>
 //Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
-var button = document.querySelector('button.count');
+
+var button = document.getElementById("count");
 var iframe = document.querySelector('iframe');
 var player = new Vimeo.Player(iframe);
 var countPlay  = 0;
 var reaptedTimes = 1;
 
-button.addEventListener('touchstart', event => {
-  reaptedTimes = document.getElementById('timeCount').value;
-  button.textContent = `手機按鈕：已提交`;
-  console.log("reaptedTimes:" + reaptedTimes);
-});
+button.addEventListener("touchstart", addCount);
 
 function addCount(){
   reaptedTimes = document.getElementById('timeCount').value;
-  button.textContent = `電腦按鈕：已提交`;
+  button.textContent = `已提交`;
   console.log("reaptedTimes:" + reaptedTimes);
 }
 
