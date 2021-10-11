@@ -94,7 +94,7 @@ var player = new Vimeo.Player(iframe);
 var countPlay  = 0;
 var reaptedTimes = 1;
 
-button.addEventListener("touchstart", addCount);
+button.addEventListener("touchend", addCount);
 
 function addCount(){
   reaptedTimes = document.getElementById('timeCount').value;
