@@ -88,13 +88,13 @@
 <script>
 //Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute.
 
-var button = document.getElementById("count");
 var iframe = document.querySelector('iframe');
 var player = new Vimeo.Player(iframe);
 var countPlay  = 0;
 var reaptedTimes = 1;
+var button = document.getElementById("count");
 
-button.addEventListener("touchend", addCount);
+//button.addEventListener("touchend", addCount);
 
 function addCount(){
   reaptedTimes = document.getElementById('timeCount').value;
