@@ -1,0 +1,5 @@
+Element: click event
+- > link: https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event
+
+Looping the Vimeo Video
+-> link: https://vimeo.zendesk.com/hc/en-us/articles/115004485728-Autoplaying-and-looping-embedded-videos
